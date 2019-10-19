@@ -271,6 +271,10 @@ fn copy_sanitizers(builder: &Builder<'_>, compiler: &Compiler, target: Interned<
         target,
     });
 
+    if builder.config.dry_run {
+        return;
+    }
+
     let llvm_version = output(Command::new(&llvm_config).arg("--version"));
     let llvm_version = llvm_version.trim();
 
